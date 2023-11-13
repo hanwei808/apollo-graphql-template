@@ -5,6 +5,9 @@ export interface UserDocument {
   username: string
   password: string
   email: string
+  bio: string
+  image: string
+  token: string
 }
 
 export interface Context {
