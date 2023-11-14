@@ -5,7 +5,7 @@ import express from 'express';
 import http from 'http';
 import cors from 'cors';
 import { MyContext } from './types/dataSources';
-import schema from './schema'
+import schema from './schema/user'
 import dataSources from './dataSources/index';
 import pkg from 'body-parser';
 

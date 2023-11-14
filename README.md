@@ -4,13 +4,33 @@
 
 ## 服务端 server
 
+[Apollo Server v4](https://www.apollographql.com/docs/apollo-server/getting-started)
+
+目录结构
+
+> src
+>
+> > config：配置文件
+> > dataSources：数据源
+> > directives：自定义指令
+> > models：数据模型
+> > schema
+> > resolvers：解析器
+> > typeDefs：类型定义
+> > types：类型
+> > utils：工具
+> >
+> > > jwt.ts：认证
+> > > md5.ts：加密
+> > > index.ts：加载服务、中间件
+
 初始化项目
 
 ```JavaScript
     npm init -y
 
     // 有版本限制，以此为准
-    // node v20+
+    // node v20+ 需在 script start 中配置 node --no-warnings=ExperimentalWarning --loader
     // server/package.json
     {
         "name": "server",
@@ -33,6 +53,8 @@
             "body-parser": "^1.20.2",
             "express": "^4.18.2",
             "graphql": "^16.6.0",
+            "graphql-tools": "^9.0.0",
+            "jsonwebtoken": "^8.5.1",
             "mongoose": "^7.1.0"
         },
         "devDependencies": {
@@ -79,3 +101,7 @@
 ```JavaScript
     npm start
 ```
+
+## 客户端 client
+
+[@vue/apollo-composable v4 官方文档](https://v4.apollo.vuejs.org/zh-cn/guide-composable/query.html)

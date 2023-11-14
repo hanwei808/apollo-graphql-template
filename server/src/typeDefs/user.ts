@@ -38,7 +38,6 @@ export const typeDefs = `#graphql
   type Query {
     foo: String @auth @upper
     users: [User]
-    user(_id: ID!): User
     currentUser: User @auth
   }
 

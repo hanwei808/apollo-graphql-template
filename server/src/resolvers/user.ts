@@ -5,6 +5,9 @@ import { md5 } from '../utils/md5';
 
 export const resolvers = {
     Query: {
+      users: (_parent: any, _args: any, { dataSources }) => {
+        return  dataSources.users.getUsers();
+      },
       currentUser: async (_parent: any, _args: any, { user }: any) => {
         return user
       }
@@ -15,13 +18,21 @@ export const resolvers = {
         const user1 = await users.getUserByUsername(user.username)
         if (user1) {
           throw new GraphQLError(
-            `User 的用户名 ${user.username} 已存在`
+            `User 的用户名 ${user.username} 已存在`, {
+              extensions: {
+                code: 'UserExist'
+              }
+            }
           );
         }
         const user2 = await users.getUserByEmail(user.email)
         if (user2) {
           throw new GraphQLError(
-            `User 的邮箱 ${user.email} 已存在`
+            `User 的邮箱 ${user.email} 已存在`, {
+              extensions: {
+                code: 'EmailExist'
+              }
+            }
           );
         }
         user.password = md5(user.password)
@@ -47,7 +58,11 @@ export const resolvers = {
         const userData = await users.getUserByUsername(user.username)
         if (!userData) {
           throw new GraphQLError(
-            `User 的用户名 ${user.username} 不存在`
+            `User 的用户名 ${user.username} 不存在`, {
+              extensions: {
+                code: 'UserNotExist'
+              }
+            }
           );
         }
         if (md5(user.password) !== userData.password) {
