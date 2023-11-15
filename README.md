@@ -105,3 +105,10 @@
 ## 客户端 client
 
 [@vue/apollo-composable v4 官方文档](https://v4.apollo.vuejs.org/zh-cn/guide-composable/query.html)
+
+快速开始
+
+```JavaScript
+    npm install
+    npm run dev
+```
